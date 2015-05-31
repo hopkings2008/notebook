@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Go development environment for Vim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link href="/index.xml" rel="alternate" type="application/atom+xml" title="GopherAcademy Blog" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/hc.css" rel="stylesheet">
+  <link href="/js/highlight/styles/github.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Gopher Academy </div>	
+      <div id = "wrapper">
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <a href="/"><img src="/images/gopheracademy-logo_sm.png" alt="" /></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+        </div>
+        
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav ">
+          <li class="smallmenu"><a  href="/post/">Categories</a></li>
+          <li class="smallmenu"><a href="http://www.gopheracademy.com">Gopher Academy</a></li>
+          <li class="smallmenu"><a href="http://www.gophercon.com">GopherCon</a></li> 
+          
+          <hr />
+      
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "";
+        var str2 = titleize(str)
+        document.write('<li class="smallmenu"><a href="/series/">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+        
+      
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "advent-2013";
+        var str2 = titleize(str)
+        document.write('<li class="smallmenu"><a href="/series/advent-2013">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+        
+      
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "advent-2014";
+        var str2 = titleize(str)
+        document.write('<li class="smallmenu"><a href="/series/advent-2014">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+        
+      
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "birthday-bash-2014";
+        var str2 = titleize(str)
+        document.write('<li class="smallmenu"><a href="/series/birthday-bash-2014">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+        
+      
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "gophercon-2015";
+        var str2 = titleize(str)
+        document.write('<li class="smallmenu"><a href="/series/gophercon-2015">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+        
+      
+
+          <form name="google-search" method="get" action="http://www.google.com/search">
+
+            <div class="post_search input-group">
+              <input type="hidden" name="sitesearch" value="blog.gopheracademy.com">
+              <input type="text" name="q" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav nav-pills nav-stacked">
+          <li class="sidebar-brand"><a href="/"><img src="/images/gopheracademy-logo.png" srcset="/images/gopheracademy-logo.png 1x, /images/gopheracademy-logo-2x.png 2x" width="140" height="145" alt="" /></a></li>
+          <hr /> 
+					<form name="google-search" method="get" action="http://www.google.com/search">
+
+	          <div class="post_search input-group">
+							<input type="hidden" name="sitesearch" value="blog.gopheracademy.com">
+              <input type="text" name="q" class="form-control">
+	            <span class="input-group-btn">
+	              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+	            </span>
+	          </div>
+					</form>
+
+          <hr /> 
+          <li class=""><a  href="/post/">Categories</a></li>
+          <li class=""><a href="http://www.gopheracademy.com">Gopher Academy</a></li>
+          <li class=""><a href="http://www.gophercon.com">GopherCon</a></li>      
+
+		      <hr />
+			
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "";
+        var str2 = titleize(str)
+        document.write('<li class=""><a href="/series/">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+				
+			
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "advent-2013";
+        var str2 = titleize(str)
+        document.write('<li class=""><a href="/series/advent-2013">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+				
+			
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "advent-2014";
+        var str2 = titleize(str)
+        document.write('<li class=""><a href="/series/advent-2014">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+				
+			
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "birthday-bash-2014";
+        var str2 = titleize(str)
+        document.write('<li class=""><a href="/series/birthday-bash-2014">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+				
+			
+      <script type="text/javascript">
+        function titleize(slug) {
+            var words = slug.split("-");
+            return words.map(function(word) {
+                var series = word.charAt(0).toUpperCase() + word.substring(1).toLowerCase();
+		return series.replace("Gophercon", "GopherCon");
+            }).join(' ');
+        }
+        var str = "gophercon-2015";
+        var str2 = titleize(str)
+        document.write('<li class=""><a href="/series/gophercon-2015">');
+        document.write(str2);
+        document.write('</a></li>');
+      </script>
+				
+			
+          <hr />
+		<div id="social-wrapper">
+			<a class="icon-social twitter" href="https://twitter.com/gopheracademy" target="_blank"></a>
+			<a class="icon-social github" href="https://github.com/gopheracademy" target="_blank"></a>
+			<a class="icon-social slack" href="http://bit.ly/go-slack-signup" target="_blank"></a>
+			<a class="icon-social rss" href="/index.xml" target="_blank"></a>
+		</div> 
+    <div class="gophercon-banner">
+      <a href="http://gophercon.com"><img src="/images/160x200-tall-ad.jpg" /></a>
+    </div>
+		
+		<div class="newCredit">
+			<p class="text-muted ">&copy; 2015 Gopher Academy, LLC 2013
+				<br />
+				Powered by <a href="http://gohugo.io/" target="_blank">Hugo</a> 
+				<br />
+				Designed by <a href="http://www.ardanstudios.com/" target="_blank">Ardan Studios</a>
+				
+			</p>
+		<div>
+		
+           
+        </ul>
+        
+     
+   
+       	
+       	
+       	
+     </div>
+
+		
+ 		
+ 
+     <div class="container">
+     
+     
+
+
+
+  <div id="article-body">
+  
+
+   <div class="article-title">Go development environment for Vim
+ </div>
+   <p class="meta">Contributed by <mark>
+<script type="text/javascript">
+ var arr = [];
+  
+ arr.push("Fatih Arslan")
+ 
+ document.write(arr.join(" & "));
+ </script>
+</mark>
+    &nbsp;<i class="fa fa-calendar-o"></i> 2014-03-29</p>
+	<p class="meta"><small></p>
+	<hr/>
+   <div class="post"></br>
+   <div id="content-font">
+     
+
+<h1 id="go-development-environment-for-vim:7023e73d65f898e0c1eb0da3eaa86a3d">Go development environment for Vim</h1>
+
+<h2 id="the-reason-for-creating-vim-go:7023e73d65f898e0c1eb0da3eaa86a3d">The reason for creating vim-go</h2>
+
+<p>Go has a very versatile toolchain and commands that makes Go programming fun.
+One of the famous tools is gofmt, which automatically reformats the code
+according to some predefined rules. However there are many other tools like
+goimports, oracle, godef, etc.. which help to provide a more productive workflow.</p>
+
+<p>There are many independent vim plugins that integrate these tools into Vim. We
+also have the offical Vim plugins that provides some basic Go support for Vim.
+However there are many flaws with these plugins:</p>
+
+<ul>
+<li>Gofmt destroy the undo history and it&rsquo;s impossible to do undo on your code</li>
+<li>Building, running or testing are not integrated, all of these needs additional settings.</li>
+<li>Binary paths are hard coded</li>
+<li>Plugins are not using the same format. Each plugin is built differently, some support lookup under the cursor, some do not.</li>
+<li>Syntax highlighting can&rsquo;t highlight functions</li>
+<li>Auto completion needs a package and additional settings.</li>
+<li>Many other small flaws..</li>
+</ul>
+
+<p>The main reason to create vim-go was to integrate all these plugins, fix the
+flaws and provide a common and seamless experience.</p>
+
+<h2 id="vim-go-features:7023e73d65f898e0c1eb0da3eaa86a3d">Vim-go features</h2>
+
+<p><a href="https://github.com/fatih/vim-go">vim-go</a> improves and supports the following
+features:</p>
+
+<ul>
+<li>Improved Syntax highlighting</li>
+<li>Auto completion support</li>
+<li>Integrated and improved snippets support</li>
+<li>Gofmt on save, keeps cursor position and doesn&rsquo;t break your undo history</li>
+<li>Go to symbol/declaration</li>
+<li>Automatically import packages</li>
+<li>Compile and build package</li>
+<li>Run quickly your snippet</li>
+<li>Run tests and see any errors in quick window</li>
+<li>Lint your code</li>
+<li>Advanced source analysis tool with oracle</li>
+<li>Checking for unchecked errors.</li>
+</ul>
+
+<p>vim-go automatically installs all necessary binaries if they are not found in
+the pre-defined path <code>~/.vim-go</code> (can be disabled if not desired). It comes with
+pre-defined sensible settings.  Under the hood it uses <code>goimports</code>, <code>oracle</code>,
+<code>godef</code>, <code>errcheck</code>, <code>gocode</code> and <code>golint</code>. Let&rsquo;s see how we can make use of
+those tools.</p>
+
+<h2 id="installation:7023e73d65f898e0c1eb0da3eaa86a3d">Installation</h2>
+
+<p>vim-go is a pathogen compatible bundle. To use it just clone it into your
+bundle directory:</p>
+
+<pre><code>$ cd ~/.vim/bundle
+$ git clone https://github.com/fatih/vim-go.git
+</code></pre>
+
+<p>Auto completion is enabled by default via <code>&lt;C-x&gt;&lt;C-o&gt;</code>, to get real-time
+completion (completion by type) install YCM:</p>
+
+<pre><code>$ cd ~/.vim/bundle
+$ git clone https://github.com/Valloric/YouCompleteMe.git
+$ cd YouCompleteMe
+$ ./install.sh
+</code></pre>
+
+<h2 id="development-with-vim-go:7023e73d65f898e0c1eb0da3eaa86a3d">Development with vim-go</h2>
+
+<p>On first usage it tries to download and install all necessary binaries.
+Let&rsquo;s see what commands we now can use. Below is a list of commands vim-go
+supports, most of the commands are improved and new ones were introduced (some
+of them are just from the official Go plugin).</p>
+
+<p>vim-go uses goimports and reformats whenever you save your file. However you
+have the option to disable goimports and explicitly import/drop packages:</p>
+
+<pre><code>:Import &lt;path&gt;
+:ImportAs &lt;localname&gt; &lt;path&gt;
+:Drop &lt;path&gt;
+
+:DisableGoimports
+:EnableGoimports
+</code></pre>
+
+<p>Godoc can be called on any identifier. Just put your cursor under the
+identifier and call <code>:Godoc</code>, it will open a new view and show the necessary documentation.</p>
+
+<pre><code>:Godoc
+:Godoc &lt;identifier&gt;
+</code></pre>
+
+<p>Godef is one of my favorites tools. It&rsquo;s find the source definition and jumps
+to that file (go to definition). To use it just put your cursor under a
+identifier and hit <code>:Godef</code>. It opens a new buffer (just like ctags). You might
+add the following settings to your <code>vimrc</code>, to open the definitions in vertical,
+horizontal or new tab with :</p>
+
+<pre><code>au Filetype go nnoremap &lt;leader&gt;v :vsp &lt;CR&gt;:exe &quot;GoDef&quot; &lt;CR&gt;
+au Filetype go nnoremap &lt;leader&gt;s :sp &lt;CR&gt;:exe &quot;GoDef&quot;&lt;CR&gt;
+au Filetype go nnoremap &lt;leader&gt;t :tab split &lt;CR&gt;:exe &quot;GoDef&quot;&lt;CR&gt;
+</code></pre>
+
+<p>Building, testing, running are all important steps in development workflow and
+should be seamless integrated. vim-go has several features that you can use. First check out the build commands:</p>
+
+<pre><code>:make
+:GoBuild
+</code></pre>
+
+<p><code>:make</code> is the default Vim command to build a project. vim-go integrates it
+in way that it ** doesn&rsquo;t produce ** any binary. That it is really useful
+because it doesn&rsquo;t pollute your work environment. Any errors are listed in a
+quickfix window and can be jumped easily with default <code>:cnext</code> and
+<code>:cprevious</code>.  <code>:GoBuild</code> is similar to <code>:make</code>, but it creates a binary for
+the given main package.</p>
+
+<p>Sometimes we only have small main package that we can want to run and see the
+output. For that we have:</p>
+
+<pre><code>:GoRun 
+:GoRun &lt;expand&gt;
+</code></pre>
+
+<p>Just calling <code>:GoRun</code> is going to include all files that belongs to the main
+package (useful for multi file programs). To run a single file just run
+<code>:Gorun %</code>. You can map this to a key, like <code>&lt;leader&gt;r</code>:</p>
+
+<pre><code>au Filetype go nnoremap &lt;leader&gt;r :GoRun %&lt;CR&gt;
+</code></pre>
+
+<p>To call <code>go test</code> just run:</p>
+
+<pre><code>:GoTest
+</code></pre>
+
+<p>Another tool we have is <code>errcheck</code>, which checks unchecked errors:</p>
+
+<pre><code>:GoErrCheck
+</code></pre>
+
+<p>Linting is useful to print out mistakes or tips about coding style. For example
+if you don&rsquo;t provide any documentation comment for a function <code>golint</code> will
+warn you. To call it just execute:</p>
+
+<pre><code>:Lint
+</code></pre>
+
+<p>To see the dependencies of your current package run <code>:GoDeps</code>. If you have
+multiple files you can easily see all source files (test files are excluded)
+via <code>:Gofiles</code>.</p>
+
+<p>And then we have the still experimental but powerful &ldquo;oracle&rdquo; tool. See the
+extensive official documentation for more info: <a href="https://docs.google.com/document/d/1SLk36YRjjMgKqe490mSRzOPYEDe0Y_WQNRv-EiFYUyw/view">Oracle docs</a> vim-go implements and includes the following commands (which are part of the
+offical oracle vim plugin):</p>
+
+<pre><code>:GoOracleDescribe
+:GoOracleCallees
+:GoOracleCallers
+:GoOracleCallgraph
+:GoOracleImplements
+:GoOracleChannelPeers
+</code></pre>
+
+<p>These are useful especially if you want to find out how your Code is
+structured, how your channels are interacting with each other, which struct is
+implementing which interface, etc&hellip;</p>
+
+<h2 id="summary-and-thanks:7023e73d65f898e0c1eb0da3eaa86a3d">Summary and Thanks!</h2>
+
+<p>Thanks for the following users and projects to make this project happen:</p>
+
+<ul>
+<li>Go Authors for offical vim plugins</li>
+<li>Gocode, Godef, Golint, Oracle, Goimports, Errcheck projects and authors of those projects.</li>
+<li>Other vim-plugins, thanks for inspiration (vim-golang, go.vim, vim-gocode, vim-godef)</li>
+</ul>
+
+<p>Check out the github page for fare more information (snippets, settings, etc..):</p>
+
+<p><a href="https://github.com/fatih/vim-go">github.com/fatih/vim-go</a></p>
+
+<p>There is also a Youtube vide that shows vim-go in action:</p>
+
+<p><a href="https://www.youtube.com/watch?v=rD11pEx5h8c">Youtube: Go development in Vim</a></p>
+
+<p>There are still tons of modifications and improvements one can make to this
+setup. vim-go is a new project. Check it out and try it to see how it fits your
+needs. Any improvements and feedback are welcome.</p>
+
+     </div>
+ </div>
+ 
+
+
+ <p>		
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'gopheracademy';
+    var disqus_identifier = 'http:\/\/blog.gopheracademy.com\/vimgo-development-environment\/';
+    var disqus_title = 'Go development environment for Vim';
+    var disqus_url = 'http:\/\/blog.gopheracademy.com\/vimgo-development-environment\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>		
+ </p> 
+ </div>
+
+
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://blog.gopheracademy.com/gogs-v0.2.0/">&lt;&lt;  Gogs: Binary Deployment: The Right Way to Deploy</a></li>
+      &nbsp;<li class="next"><a href="http://blog.gopheracademy.com/plumbing-and-semantics/"> Plumbing and Semantics: Communication Patterns in Distributed System  >></a></li>
+</ul>
+
+    </ul>
+    </div>
+    <footer>
+    </footer>
+ 
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/hc.js"></script>
+    <script src="/js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40924989-2', 'gopheracademy.com');
+      ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
+

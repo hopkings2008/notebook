@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>Golang开发环境搭建-Vim篇  | Golang中文社区(Go语言构建) | Go语言中文网 | Go语言学习园地</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/static/img/go.ico">
+	<meta name="keywords" content="Golang开发环境搭建-Vim篇, Go语言博客文章, Go语言博文, Go语言, Golang, Go中文社区,Golang中文社区, Go语言社区, Go语言学习园地">
+<meta name="description" content="Golang开发环境搭建-Vim篇 十一 07 bigwhite技术志 Editor, errcheck, Git, github, Go, go.tools, gocode, godef, goimports, Golang, golint, gorename, gosublime, hg, IDE, Mercurial, MolokaiTheme, neocomplete, neosnippe">
+	<meta name="author" content="polaris <polaris@studygolang.com>">
+	<link href="http://studygolang.qiniudn.com/fonts_googleapi.css" rel="stylesheet">
+	
+	
+	<link href="http://studygolang.qiniudn.com/cosmo_bootstrap.min.css" rel="stylesheet">
+	
+	<link href="/static/css/main.css?v=1.1" rel="stylesheet"/>
+	
+<link href="/static/css/highlight/default.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/css/syntax_highlight/shCore.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/css/syntax_highlight/shCoreDefault.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/static/css/jquery.atwho.min.css" media="screen" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<header class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand"><img alt="Go语言中文网" src="/static/img/text_logo.png"></a>
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar-main">
+				<ul class="nav navbar-nav">
+					<li class="">
+						<a href="/topics">社区</a>
+					</li>
+					<li class="dropdown active">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="articles">精彩文章 <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="articles">
+							<li><a href="/articles">网友博文</a></li>
+							<li><a href="http://blog.studygolang.com" target="_blank">本站博客</a></li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="/projects">开源项目</a>
+					</li>
+					<li class="">
+						<a href="/resources">资源</a>
+					</li>
+					<li class="dropdown ">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="readings">技术晨读 <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="readings">
+							<li><a href="/readings">Go晨读</a></li>
+							<li><a href="/readings?rtype=1">综合晨读</a></li>
+						</ul>
+					</li>
+					<li class="dropdown ">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="docs">官方文档<i class="newfuture"></i> <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="docs">
+							<li><a href="http://docs.studygolang.com" target="_blank">英文文档</a></li>
+							<li><a href="http://docscn.studygolang.com" target="_blank">中文文档</a></li>
+							<li><a href="/pkgdoc">标准库中文版</a></li>
+							<li role="presentation" class="divider"></li>
+							<li><a href="http://tour.studygolang.com" target="_blank">Go指南</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+				<form class="navbar-form navbar-left" action="/search" role="search" target="_blank">
+					<input type="text" name="q" class="form-control search-query" placeholder="搜索" value="">
+				</form>
+				<ul class="nav navbar-nav navbar-right" id="userbar">
+					
+					<li class="first"><a href="/account/register">注册</a></li><li class="last"><a href="/account/login">登录</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="wrapper" id="wrapper">
+		<div class="container" role="main">
+			
+<div class="row banner">
+</div>
+<div class="row">
+	<div class="col-lg-9 col-md-8 col-sm-7">
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+			<li><a href="/articles">网友博文</a></li>
+			<li class="active">Golang开发环境搭建-Vim篇</li>
+		</ol>
+		<div class="page box_white">
+			<div class="title text-center">
+				<h1>Golang开发环境搭建-Vim篇</h1>
+			</div>
+			<div class="meta">
+				<div class="p-author">
+					<i class="glyphicon glyphicon-calendar"></i>
+					<span title="发布日期">2014-11-07</span>&nbsp;
+					<i class="glyphicon glyphicon-user"></i>
+					bigwhite
+				</div>
+				
+				
+				<div class="p-comment text-right">
+					<span class="view" title="阅读数">
+						<i class="glyphicon glyphicon-eye-open"></i>
+						阅读 <span>1953</span> 次&nbsp;
+					</span>
+					<span class="like" title="喜欢人数">
+						<i class="glyphicon glyphicon-heart"></i>
+						<span class="likenum">1</span> 人喜欢&nbsp;
+					</span>
+					<a href="/articles/1785#commentForm" title="我要评论"><i class="glyphicon glyphicon-comment"></i> <span class="cmtnum">0</span> 条评论</a>&nbsp;
+					<a class="favorite collect " href="#" title="稍后再读" data-objid="1785" data-objtype="1" data-collect="0">
+						<i class="glyphicon glyphicon-star-empty"></i> 收藏
+					</a>
+				</div>
+				
+			</div>
+			<div class="tags">
+				
+			</div>
+			
+			<div class="content">
+				<p>虽说<font face="Courier New"><a href="http://www.sublimetext.com/3" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.sublimetext.com']);">sublimetext3</a>+<a href="https://github.com/DisposaBoy/GoSublime" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">gosublime</a>+<a href="https://github.com/nsf/gocode" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">gocode</a></font>是目前较为 流行的<a href="http://tonybai.com/tag/go">Golang</a>开发环境组合，但作为一名VIMer，没有一套得心应手的<a href="http://www.vim.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.vim.org']);">Vim</a> for Golang dev心里总是过不去的。Golang虽然年轻，但即便是从<a href="http://tonybai.com/2014/10/25/golang-history/">Go 1版本发布</a>(2012年3月28日)算起，掐指算来也有小三年了。全世界的开发者已经为Golang贡献了较为成熟的Vim插件了。有了这些插件，搭建出 一套高效的Golang开发环境还是不难的，网上也有大量的资料可以参考，其中就有<a href="https://github.com/fatih/vim-go" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">vim-go</a>作者自己发表的一篇文章《<a href="http://blog.gopheracademy.com/vimgo-development-environment/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://blog.gopheracademy.com']);">Go development environment for Vim</a>》。不过看别人 写的与自己搭建体验的还是有大不同的，于是想来想去还是把整个过程记录下来。</p>
+<p><b>一、一个干净的环境</b></p>
+<p>找个干净的基础环境，方便确认每个搭建步骤后的效果：</p>
+<p><font face="Courier New"><a href="http://tonybai.com/2014/09/26/install-docker-on-ubuntu-server-1404/">Ubuntu 14.04</a> x86_64<br/>
+	vim version 7.4.52<br/>
+	go version go1.4beta1 linux/amd64</font></p>
+<p>再准备一个编辑Go源码的测试源文件：</p>
+<p><font face="Courier New">//hellogolang.go</font></p>
+<p><font face="Courier New">package main</font></p>
+<p><font face="Courier New">import "fmt"</font></p>
+<p><font face="Courier New">func main() {<br/>
+	        fmt.Println("Hello Golang!")<br/>
+	}</font></p>
+<p>用于验证每个搭建步骤后的变化。</p>
+<p><b>二、严格按照vim-go的官方说明逐一搭建</b></p>
+<p>Vim-go是当前使用最为广泛的用于搭建Golang开发环境的vim插件，这里我同样使用vim-go作为核心和基础进行环境搭建的。vim-go利 用开源Vim插件管理器安装，<a href="https://github.com/gmarik/Vundle.vim" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">gmarik/Vundle.vim</a>是目前被推荐次数更多的Vim插件管理器，超过了<a href="http://www.vim.org/scripts/script.php?script_id=2332" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.vim.org']);">pathogen</a>。这里我们 就用vundle来作为Vim的插件管理工具。</p>
+<p><b>1、安装Vundle.vim</b></p>
+<p>Vundle.vim的安装步骤如下：</p>
+<p><font face="Courier New">mkdir ~/.vim/bundle<br/>
+	git clone <a class="moz-txt-link-freetext" href="https://github.com/gmarik/Vundle.vim.git" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">https://github.com/gmarik/Vundle.vim.git</a> ~/.vim/bundle/Vundle.vim   </font>                                                                   </p>
+<p>创建<font face="Courier New">~/.vimrc</font>文件(如果你没有这个文件的话)，在文件顶部添加有关Vundle.vim的配置：</p>
+<p><font face="Courier New">set nocompatible              " be iMproved, required<br/>
+	filetype off                  " required</font></p>
+<p><font face="Courier New">" set the runtime path to include Vundle and initialize<br/>
+	set rtp+=~/.vim/bundle/Vundle.vim<br/>
+	call vundle#begin()</font></p>
+<p><font face="Courier New">" let Vundle manage Vundle, required<br/>
+	Plugin 'gmarik/Vundle.vim'</font></p>
+<p><font face="Courier New">" All of your Plugins must be added before the following line<br/>
+	call vundle#end()            " required<br/>
+	filetype plugin indent on    " required</font></p>
+<p>此时Vim仅安装了Vundle.vim这一个插件。编辑hellogolang.go时与编辑普通文本文件无异，一切都还是Vim的默认属性。</p>
+<p><b>2、安装Vim-go</b></p>
+<p>编辑<font face="Courier New">~/.vimrc</font>，在<font face="Courier New">vundle#begin</font>和<font face="Courier New">vundle#end</font>间增加一行：</p>
+<p><font face="Courier New">Plugin 'fatih/vim-go'</font></p>
+<p>在Vim内执行<font face="Courier New"> <img src="http://tonybai.com/wp-includes/images/smilies/icon_razz.gif" alt=":P" class="wp-smiley"/> luginInstall</font>，</p>
+<p>Vundle.vim会在左侧打开一个Vundle Installer Preview子窗口，窗口下方会提示：<font face="Courier New">“Processing 'fatih/vim-go'”</font>，待安装完毕后，提示信息变 成“<font face="Courier New">Done!”。</font></p>
+<p><font face="Courier New">这时，我们可以看到.vim/bundle下多了一个vim-go文件夹：</font></p>
+<p><font face="Courier New">$ ls .vim/bundle/<br/>
+	vim-go/  Vundle.vim/</font></p>
+<p>此时，再次编辑hellogolang.go，<u><b>语法高亮</b></u>有了， <u><b>保存时自动format</b></u>（利用$GOBIN/gofmt）也有了，但其他高级功能，比如自动import缺失的 package、自动补齐仍然没有，我们还要继续安装一些东东。</p>
+<p><b>3、安装go.tools Binaries</b></p>
+<p>vim-go安装说明中提到所有必要的binary需要先安装好，比如gocode、godef、goimports等。</p>
+<p>通过<font face="Courier New">:GoInstallBinaries</font>，这些vim-go依赖的二进制工具将会自动被下载，并被安装到<font face="Courier New">$GOBIN</font>下或<font face="Courier New">$GOPATH/bin</font>下。（这个工具需要依赖git或hg，需要提前安装到你的OS中。）</p>
+<p><font face="Courier New">:GoInstallBinaries</font>的执行是交互式的，你需要回车确认：</p>
+<p><font face="Courier New">vim-go: gocode not found. Installing github.com/nsf/gocode to folder /home/tonybai/go/bin<br/>
+	vim-go: goimports not found. Installing code.google.com/p/go.tools/cmd/goimports to folder /home/tonybai/go/bin/<br/>
+	vim-go: godef not found. Installing code.google.com/p/rog-go/exp/cmd/godef to folder /home/tonybai/go/bin/<br/>
+	vim-go: oracle not found. Installing code.google.com/p/go.tools/cmd/oracle to folder /home/tonybai/go/bin/<br/>
+	vim-go: gorename not found. Installing code.google.com/p/go.tools/cmd/gorename to folder /home/tonybai/go/bin/<br/>
+	vim-go: golint not found. Installing github.com/golang/lint/golint to folder /home/tonybai/go/bin/</font><br/>
+	<font face="Courier New">vim-go: errcheck not found. Installing github.com/kisielk/errcheck to folder /home/tonybai/go/bin/</font></p>
+<p>不过这些代码多在code.google.com上托管，因此由于众所周知的原因，vim-go的自动安装很可能以失败告终，这样就需要你根据上 面日志中提到的各个工具的源码地址逐一去下载并本地安装。无法搭梯子的，可以通过http://gopm.io 下载相关包。</p>
+<p>安装后，$GOBIN下的新增Binaries如下：<br/>
+	<font face="Courier New">-rwxr-xr-x  1 tonybai tonybai  5735552 11??  7 11:03 errcheck*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  9951008 11??  7 10:33 gocode*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  5742800 11??  7 11:07 godef*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  4994120 11??  7 11:00 goimports*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  5750152 11??  7 11:03 golint*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  6381832 11??  7 11:01 gorename*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  2954392 11??  7 10:38 gotags*<br/>
+	-rwxr-xr-x  1 tonybai tonybai  9222856 11??  7 11:01 oracle*</font></p>
+<p>安装好这些Binaries后，我们来看看哪些特性被支持了。</p>
+<p>再次编辑<font face="Courier New">hellogolang.go</font>：</p>
+<p>         <font face="Courier New">- 新起一行输入fmt.，然后ctrl+x, ctrl+o，Vim 会弹出补齐提示下拉框，不过并非实时跟随的那种补齐，这个补齐是由gocode提供的。<br/>
+	    – 输入一行代码：time.Sleep(time.Second)，执行:GoImports，Vim会自动导入time包。<br/>
+	    – 将光标移到Sleep函数上，执行:GoDef或命令模式下敲入gd，Vim会打开$GOROOT/src/time/sleep.go中 的Sleep函数的定义。执行:b 1返回到hellogolang.go。<br/>
+	    – 执行:GoLint，运行golint在当前Go源文件上。<br/>
+	    – 执行:GoDoc，打开当前光标对应符号的Go文档。<br/>
+	    – 执行:GoVet，在当前目录下运行go vet在当前Go源文件上。<br/>
+	    – 执行:GoRun，编译运行当前main package。<br/>
+	    – 执行:GoBuild，编译当前包，这取决于你的源文件，GoBuild不产生结果文件。<br/>
+	    – 执行:GoInstall，安装当前包。<br/>
+	    – 执行:GoTest，测试你当前路径下地_test.go文件。<br/>
+	    – 执行:GoCoverage，创建一个测试覆盖结果文件，并打开浏览器展示当前包的情况。<br/>
+	    – 执行:GoErrCheck，检查当前包种可能的未捕获的errors。<br/>
+	    – 执行:GoFiles，显示当前包对应的源文件列表。<br/>
+	    – 执行:GoDeps，显示当前包的依赖包列表。<br/>
+	    – 执行:GoImplements，显示当前类型实现的interface列表。<br/>
+	    – 执行:GoRename [to]，将当前光标下的符号替换为[to]。</font></p>
+<p><b>三、其他插件</b></p>
+<p>到目前为止，我们还有若干特性没能实现，重点是：</p>
+<p><font face="Courier New">    – 实时跟随的代码补齐<br/>
+	    – Code Snippet support</font></p>
+<p><b>1、安装<a href="https://github.com/Valloric/YouCompleteMe" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">YCM</a>(Your Complete Me)</b></p>
+<p>在~/.vimrc中添加一行：</p>
+<p><font face="Courier New">Plugin 'Valloric/YouCompleteMe'</font></p>
+<p>保存退出后，再打开~/.vimrc并执行<font face="Courier New"> <img src="http://tonybai.com/wp-includes/images/smilies/icon_razz.gif" alt=":P" class="wp-smiley"/> luginInstall</font>。</p>
+<p>安装完后，下面的提示栏提示：</p>
+<p><font face="Courier New">ycm_client_support.[so|pyd|dll] and ycm_core.[so|pyd|dll] not detected; you need to compile YCM before using it. Read the docs!</font></p>
+<p>似乎YCM是用了C++编写的模块对性能进行优化了，于是需要手工编译YCM的support库。步骤如下：</p>
+<p><font face="Courier New">sudo apt-get install build-essential cmake python-dev<br/>
+	cd ~/.vim/bundle/YouCompleteMe<br/>
+	./install.sh</font></p>
+<p>构建（编译C++很慢，需要耐心的等一会）ok后，再打开hellogolang.go，逐字的实时补全功能就具备了！Cool！</p>
+<p><b>2、安装</b> <a href="https://github.com/SirVer/ultisnips" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);"><b>UltiSnips</b></a></p>
+<p>Vim-go默认是用ultisnips引擎插件，但这个插件需要单独安装。</p>
+<p>同样，我们利用vundle来安装它，在~/.vimrc中添加一行：</p>
+<p><font face="Courier New">Plugin 'SirVer/ultisnips'</font></p>
+<p>snippet和snippet引擎是分开的。ultisnips是引擎，vim-go的go snippet定义在这里</p>
+<p><font face="Courier New"><a class="moz-txt-link-freetext" href="https://github.com/fatih/vim-go/blob/master/gosnippets/snippets/go.snip" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">https://github.com/fatih/vim-go/blob/master/gosnippets/snippets/go.snip</a></font></p>
+<p>编辑hellogolang.go，按照go.snip中的说明，我们输入func后敲击tab键，我们发现期待的：</p>
+<p><font face="Courier New">func name(params) type {<br/>
+	       <br/>
+	}</font></p>
+<p>并没有出现。反倒是YCM的下拉提示显示在那里让你选择。似乎是ultisnips和YCM的键组合冲突了。ultisnips官方说明也的确如 此。ultisnips默认是用Tab展开snippet的，而YCM中的Tab用来选择补齐项，我们可以通过设置来避免这些。</p>
+<p>我们在.vimrc中添加如下setting：</p>
+<p><font face="Courier New">" YCM settings<br/>
+	let g:ycm_key_list_select_completion = ['<enter>', '<down>']<br/>
+	let g:ycm_key_list_previous_completion = ['<up>']<br/>
+	let g:ycm_key_invoke_completion = '<C-Space>'</up></down></enter></font></p>
+<p><font face="Courier New">" UltiSnips setting<br/>
+	let g:UltiSnipsExpandTrigger="<tab>"<br/>
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"<br/>
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"</font></p>
+<p>这样让YCM通过回车和向下的箭头来做list item正向选择，通过向上箭头做反向选择。通过ctrl+space来原地触发补齐提示。</p>
+<p>而ultisnips则是用tab做snippet展开，ctrl+b正向切换占位符，ctrl+z反向切换占位符。</p>
+<p><b>3、安装molokai theme</b></p>
+<p>Molokai theme是TextMate的theme的vim port，看着截图挺不错的，于是也安装了一下。</p>
+<p><font face="Courier New">    mkdir ~/.vim/colors<br/>
+	    下载或copy <a class="moz-txt-link-freetext" href="https://github.com/fatih/molokai/blob/master/colors/molokai.vim%E5%88%B0%7E/.vim" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com']);">https://github.com /fatih/molokai/blob/master/colors/molokai.vim到~/.vim</a> /colors目录下<br/>
+	    在.vimrc添加一行：colorscheme molokai</font></p>
+<p><b>四、.vimrc</b></p>
+<p>前面讲到了vim-go有许多命令，在:xx模式下执行多显不便，于是你可以定义一些Mappings，比如：</p>
+<p><font face="Courier New">" set mapleader<br/>
+	let mapleader = ","</font></p>
+<p><font face="Courier New">" vim-go custom mappings<br/>
+	au FileType go nmap <Leader>s <Plug>(go-implements)<br/>
+	au FileType go nmap <Leader>i <Plug>(go-info)<br/>
+	au FileType go nmap <Leader>gd <Plug>(go-doc)<br/>
+	au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)<br/>
+	au FileType go nmap <leader>r <Plug>(go-run)<br/>
+	au FileType go nmap <leader>b <Plug>(go-build)<br/>
+	au FileType go nmap <leader>t <Plug>(go-test)<br/>
+	au FileType go nmap <leader>c <Plug>(go-coverage)<br/>
+	au FileType go nmap <Leader>ds <Plug>(go-def-split)<br/>
+	au FileType go nmap <Leader>dv <Plug>(go-def-vertical)<br/>
+	au FileType go nmap <Leader>dt <Plug>(go-def-tab)<br/>
+	au FileType go nmap <Leader>e <Plug>(go-rename)</font></p>
+<p>这样我们在命令模式下，输入<font face="Courier New"><,>+<r></font>就是运行 当前main包，以此类推。</p>
+<p>另外下面这个配置使得我们在save file时既可以格式化代码，又可以自动插入包导入语句（或删除不用的包导入语句）。</p>
+<p><font face="Courier New">" vim-go settings<br/>
+	let g:go_fmt_command = "goimports"</font></p>
+<p>到这里，我们的Vim Golang开发环境就基本搭建好了。snippet+实时补齐让你Coding如飞！</p>
+<p><b>五、附录：.vimrc文件</b></p>
+<p>下面是截至目前为止全量.vimrc文件的内容：</p>
+<p><font face="Courier New">set nocompatible              " be iMproved, required<br/>
+	filetype off                  " required<br/>
+	colorscheme molokai</font></p>
+<p><font face="Courier New">" set the runtime path to include Vundle and initialize<br/>
+	set rtp+=~/.vim/bundle/Vundle.vim<br/>
+	call vundle#begin()</font></p>
+<p><font face="Courier New">" let Vundle manage Vundle, required<br/>
+	Plugin 'gmarik/Vundle.vim'<br/>
+	Plugin 'fatih/vim-go'<br/>
+	Plugin 'Valloric/YouCompleteMe'</font></p>
+<p><font face="Courier New">Plugin 'SirVer/ultisnips'</font></p>
+<p><font face="Courier New">" All of your Plugins must be added before the following line<br/>
+	call vundle#end()            " required<br/>
+	filetype plugin indent on    " required</font></p>
+<p><font face="Courier New">" set mapleader<br/>
+	let mapleader = ","</font></p>
+<p><font face="Courier New">" vim-go custom mappings<br/>
+	au FileType go nmap <Leader>s <Plug>(go-implements)<br/>
+	au FileType go nmap <Leader>i <Plug>(go-info)<br/>
+	au FileType go nmap <Leader>gd <Plug>(go-doc)<br/>
+	au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)<br/>
+	au FileType go nmap <leader>r <Plug>(go-run)<br/>
+	au FileType go nmap <leader>b <Plug>(go-build)<br/>
+	au FileType go nmap <leader>t <Plug>(go-test)<br/>
+	au FileType go nmap <leader>c <Plug>(go-coverage)<br/>
+	au FileType go nmap <Leader>ds <Plug>(go-def-split)<br/>
+	au FileType go nmap <Leader>dv <Plug>(go-def-vertical)<br/>
+	au FileType go nmap <Leader>dt <Plug>(go-def-tab)<br/>
+	au FileType go nmap <Leader>e <Plug>(go-rename)</font></p>
+<p><font face="Courier New">" vim-go settings<br/>
+	let g:go_fmt_command = "goimports"</font></p>
+<p><font face="Courier New">" YCM settings<br/>
+	let g:ycm_key_list_select_completion = ['<enter>', '<down>']<br/>
+	let g:ycm_key_list_previous_completion = ['<s-enter>', '<up>']<br/>
+	let g:ycm_key_invoke_completion = '<C-Space>'</up></s-enter></down></enter></font></p>
+<p><font face="Courier New">" UltiSnips settings<br/>
+	let g:UltiSnipsExpandTrigger="<tab>"<br/>
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"<br/>
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"</font></p>
+<p style="text-align:left">© 2014, <a href="http://tonybai.com">bigwhite</a>. 版权所有. </p>
+			</div>
+			
+			<div class="row orig-info">
+				<p>本文来自：<a href="/wr?u=http://tonybai.com" target="_blank" title="Tony Bai">Tony Bai</a></p>
+				<p>感谢作者：bigwhite</p>
+				<p>查看原文：<a href="/wr?u=http%3a%2f%2ftonybai.com%2f2014%2f11%2f07%2fgolang-development-environment-for-vim%2f" target="_blank" title="Golang开发环境搭建-Vim篇">Golang开发环境搭建-Vim篇</a></p>
+			</div>
+			<div class="active row">
+				<div class="mark-like-btn col-md-8">
+					<a class="share-btn like-btn " href="javascript:;" title="我喜欢" data-objid="1785" data-objtype="1" data-flag="0">
+						<i class="glyphicon glyphicon-heart-empty"></i><span class="likenum">1</span>人喜欢
+					</a>
+					<a class="share-btn collect " href="javascript:;" title="稍后再读" data-objid="1785" data-objtype="1" data-collect="0">
+						<i class="glyphicon glyphicon-star-empty"></i>收藏
+					</a>
+				</div>
+				
+				<div class="jiathis_style_32x32">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a href="http://www.jiathis.com/share?uid=1895190" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"></a>
+				</div>
+				<script type="text/javascript">
+				var jiathis_config = {data_track_clickback:'true'};
+				</script>
+				<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1358871817652577" charset="utf-8"></script>
+				
+			</div>
+			<div id="hm_t_45501" style="margin:0 auto;max-width:790px;"></div>
+			<div class="row prev-next">
+				<div><a href="/articles/1784" title="Go程序设计语言">« </a>上一篇: <a href="/articles/1784" title="Go程序设计语言">Go程序设计语言</a></div>
+				<div><a href="/articles/1787" title="Go语言学习(二)：array、slices和map">» </a>下一篇: <a href="/articles/1787" title="Go语言学习(二)：array、slices和map">Go语言学习(二)：array、slices和map</a></div>
+			</div>
+			
+			<div class="page-comment" data-objid="1785" data-objtype="1" >
+				<div class="words hide">
+					<h3><span class="cmtnum">0</span>条评论</h3>
+					<ul class="list-unstyled">
+					</ul>
+				</div>
+				<div class="comment-title">
+					<h2>文章点评：</h2>
+					
+					<span class="h2-tip">
+					（您需要 <a class="c-log" href="javascript:openPop('#login-pop');">登录</a> 后才能评论 <a href="/user/register" class="c-reg"> 没有账号</a> ？）</span>
+					
+				</div>
+				
+<div class="row clearfix md-toolbar">
+	<ul class="col-md-10 list-inline">
+		<li class="edit cur"><a href="#">编辑</a></li>
+		<li class="preview"><a href="#">预览</a></li>
+	</ul>
+	<div class="col-md-2 text-right">
+		<i id="upload-img" class="glyphicon glyphicon-picture upload-img tool-tip" data-toggle="tooltip" data-placement="top" title="上传图片"></i>
+	</div>
+</div>
+<div class="submit" id="commentForm">
+	<div class="text">
+		<textarea name="content" placeholder="我有话要说……" class="main-textarea need-autogrow"></textarea>
+	</div>
+	<div class="sub row">
+		<ul class="help-block col-md-10">
+			<li class="markdown_tip">支持 Markdown 格式, <strong>**粗体**</strong>、~~删除线~~、<code>`单行代码`</code>、<code>```go 高亮代码```</code></li>
+			<li>支持 @ 本站用户；支持表情（输入 : 提示），见 <a href="http://www.emoji-cheat-sheet.com/" target="_blank">Emoji cheat sheet</a></li>
+		</ul>
+		<div class="col-md-2 text-right"><button type="submit" title="提交" class="btn btn-danger">提交</button></div>
+	</div>
+</div>
+<div class="content-preview"></div>
+
+			</div>
+			
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-4 col-sm-5">
+		<div class="row box_white sidebar">
+			<div class="top">
+				<ul class="list-inline text-center">
+					<li class="first"><a href="/topics" target="_blank" class="cur" title="点击更多">最新主题</a>|</li>
+					<li class="second"><a href="/resources" target="_blank" title="点击更多">最新资源</a>|</li>
+					<li class="last"><a href="javascript:;">最新评论</a></li>
+				</ul>
+				<p class="bar"></p>
+			</div>
+			<div class="sb-content">
+				<div class="topic-list first" data-limit="5">
+					<ul class="list-unstyled">
+						<img src="/static/img/loaders/loader7.gif" alt="加载中" />
+					</ul>
+				</div>
+				<div class="resource-list second hidden" data-limit="5">
+					<ul class="list-unstyled">
+					</ul>
+				</div>
+				<div class="cmt-list last hidden" data-limit="5">
+					<ul class="list-unstyled">
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row box_white sidebar">
+			<a href="http://www.shiyanlou.com/courses/startandgetconsole/698" target="_blank"><img src="http://studygolang.qiniudn.com/ad/shiyanlou_golang_env2.jpg" alt="实验环境"></a>
+		</div>
+
+		<div class="row box_white sidebar">
+			<script type="text/javascript">
+			var cpro_id="u1996895";
+			(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"291",rsi1:"291",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"0",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+		</div>
+
+		<div class="row box_white sidebar">
+			<div class="top">
+				<h3 class="title"><i class="glyphicon glyphicon-fire"></i>&nbsp;<a href="/projects" target="_blank" title="点击更多">开源项目</a></h3>
+			</div>
+			<div class="sb-content">
+				<div class="project-list" data-limit="5">
+					<ul class="list-unstyled">
+						<img src="/static/img/loaders/loader7.gif" alt="加载中" />
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div>
+				<div class="pull-left" style="margin-right:10px;">
+					<img src="/static/img/logo.png" widht="48px" height="48px" alt="golang logo">
+				</div>
+				<p class="links">
+					<a href="/wiki/about">关于</a> | <a href="/api">API</a> | <a href="/wiki/contributors">贡献者</a> | <a href="/wiki/">帮助推广</a> | <a href="/topics/node16">反馈</a> | <a href="http://github.com/studygolang" target="_blank" rel="nofollow">Github</a> | <a href="http://weibo.com/studygolang" target="_blank" rel="nofollow">新浪微博</a> | <a href="/wide/playground">内嵌Wide</a> | <a href="/wiki/duty">免责声明</a>
+				</p>
+				<p class="copyright">&copy;2013-2015 studygolang.com 采用 <a href="http://golang.org" target="_blank">Go语言</a> + <a href="http://www.mysql.com/" target="_blank">MYSQL 构建</a>
+				&nbsp;&nbsp;当前在线：<span id="onlineusers">30</span>人&nbsp;&nbsp;历史最高：<span id="maxonline">300</span>人
+				<br/>
+				<b>网站编译信息</b>&nbsp;版本：master-5adbe9778f0f67fadd09123c53e5be76db0d7b10，时间：<attr class="timeago">2015-05-10T23:13:01&#43;0800</attr>
+				<br/>中国 Golang 社区，Go语言学习园地，致力于构建完善的 Golang 中文社区，Go语言爱好者的学习家园。
+	京ICP备14030343号-1
+				</p>
+				<p class="text-center">
+					<a href="http://www.ucai.cn?fr=studygolang" title="优才网" target="_blank"><img src="http://p3.ucai.cn/static/i3/mission/moblie_ucai_logo.png" alt="优才网" width="175px" height="45px" /></a>
+					<a href="https://www.shiyanlou.com?fr=studygolang" title="实验楼" target="_blank"><img src="http://studygolang.qiniudn.com/ad/shiyanlou_logo.png" alt="实验楼" width="310px" height="45px" /></a>
+					<a href="https://portal.qiniu.com/signup?code=3lfz4at7pxfma" title="七牛云存储" target="_blank"><img src="http://qiniutek.com/images/logo-2.png" alt="七牛云存储" width="290px" height="45px" /></a>
+				</p>
+			</div>
+		</div>
+	</footer>
+	<div id="gotop"></div>
+
+	
+	<input type="hidden" id="is_login_status" value="0" />
+	<div class="pop login-pop" id="login-pop">
+		
+		<div class="login-form">
+			<div class="error text-center"></div>
+			<form action="#" method="post" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="username" class="col-sm-3 control-label">用户名</label>
+					<div class="col-sm-9 form-input">
+						<input type="text" class="form-control" id="username" name="username" placeholder="请填写用户名或邮箱">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="passwd" class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-9 form-input">
+						<input type="password" class="form-control" id="passwd" name="passwd" placeholder="密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label>
+								<input id="user_remember_me" name="remember_me" type="checkbox" value="1" checked="checked" />	记住登录状态
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" id="login-btn" class="btn btn-default pull-left">登录</button>
+						<div class="forget">
+							<a href="/account/forgetpwd" title="点击找回密码">忘记密码？</a>
+						</div>
+						<div class="register">
+							<span>还不是会员</span><a href="/account/register">现在注册</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="sg-overlay"></div>
+	
+<div style="display:none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F224c227cd9239761ec770bc8c1fb134c' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/static/js/libs/jquery.timeago.js"></script>
+<script src="/static/js/libs/jquery.timeago.zh-CN.js"></script>
+<script src="/static/js/libs/md5.js"></script>
+<script type="text/javascript">
+	
+	var wsUrl = 'ws://studygolang.com/ws?uid=';
+</script>
+<script src="/static/js/common.js?v=1.1"></script>
+
+<script	type="text/javascript" src="/static/js/libs/jquery.autogrowtextarea.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/marked.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/highlight.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/jquery.caret.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/jquery.atwho.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/emojify.min.js"></script>
+<script type="text/javascript" src="/static/js/libs/emojis.js"></script>
+
+<script type="text/javascript" src="/static/js/libs/plupload.full.min.js"></script>
+<script type="text/javascript" src="/static/js/comment.js?v=1.1"></script>
+<script type="text/javascript" src="/static/js/puploader.js"></script>
+<script type="text/javascript">
+
+SG.SIDE_BARS = [
+	"/topics/recent.json",
+	"/resources/recent.json",
+	"/comments/recent.json",
+	"/projects/recent.json",
+];
+
+$(function(){
+	
+	$('.need-autogrow').autoGrow();
+	
+	loadComments();
+
+	
+	$('#wrapper .content').on('mousedown', 'a', function(evt){
+		var url = $(this).attr('href');
+		
+		$(this).attr('href', url);
+		$(this).attr('target', '_blank');
+	});
+});
+</script>
+<script type="text/javascript">
+ 
+var cpro_id = "u1989498";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cnw.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="/static/js/libs/emojify.min.js"></script>
+<script src="/static/js/sidebar.js?v=1.0"></script>
+</html>
