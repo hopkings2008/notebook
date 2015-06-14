@@ -12,14 +12,15 @@ app.ServeHttp=>operation: app.ServeHttp
 dispatch=>operation: app.dispatch(dispatch the client request to handler)
 authorized=>operation: app.authorized
 accessController=>operation: app.accessController.Authorized(authorize the client)
-requestRoute=>condition: route request
-manifestDispatcher=>operation: imageManifestDispatcher
-tagsDispatcher=>operation: tagsDispatcher
+requestRoute=>operation: route request
+handler=>operation: imageManifestDispatcher, tagsDispatcher, blobDispatcher, blobUploadDispatcher
 
 st->newapp->route->driver->httpserver->app.ServeHttp->dispatch->authorized->accessController
 accessController->requestRoute
-requestRoute(yes)->manifestDispatcher
-requestRoute(no)->tagsDispatcher
+requestRoute->handler
 ```
 
- blobDispatcher, blobUploadDispatcher
+
+
+
+
